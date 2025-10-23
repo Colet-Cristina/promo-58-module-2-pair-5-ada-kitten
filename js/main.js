@@ -7,50 +7,36 @@ const kittenlist = document.querySelector(".js-list");
 
 // Asignar a cada constante su contenido que estaba antes en HTML
 const kittenOneText = `<li class="card">
-    <article>
-      <img
-        class="card_img"
-        src="https://dev.adalab.es/gato-siames.webp"
-        alt="gatito"
-      />
-      <h3 class="card_title">Anastacio</h3>
-      <h4 class="card_race">Siamés</h4>
+   <article>
+      <img class="card_img" src="${kittenImage1}" alt="gatito ${kittenName1}"/>
+      <h3 class="card_title"> ${kittenName1} </h3>
+      <h4 class="card_race"> ${kittenRace1} </h4>
       <p class="card_description">
-        Porte elegante, su patrón de color tan característico y sus ojos de un
-        azul intenso, pero su historia se remonta a Asía al menos hace 500 años,
-        donde tuvo su origen muy posiblemente.
+         ${kittenDesc1}
       </p>
     </article>
   </li>`;
 
 const kittenTwoText = `<li class="card">
-    <img
-      class="card_img"
-      src="https://dev.adalab.es/sphynx-gato.webp"
-      alt="sphynx-cat"
-    />
-    <h3 class="card_title">Fiona</h3>
-    <h4 class="card_race">Sphynx</h4>
+   <article>
+    <img class="card_img" src="${kittenImage2}" alt="sphynx-cat"/>
+    <h3 class="card_title">${kittenName2}</h3>
+    <h4 class="card_race">${kittenRace2}</h4>
     <p class=" card_description">
-      Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con
-      pinta de alienígena han llegado a definir a esta raza gatuna que se
-      caracteriza por la «ausencia» de pelo.
+       ${kittenDesc1}
     </p>
+    </article>
   </li>`;
 
 const kittenThreeText = `<li class="card">
-    <img
-      class="card_img"
-      src="https://dev.adalab.es/maine-coon-cat.webp"
-      alt="maine-coon-cat"
-    />
-    <h3 class="card_title">Cielo</h3>
-    <h4 class="card_race">Maine Coon</h4>
+   <article>
+    <img class="card_img" src="${kittenImage3}" alt="maine-coon-cat"/>
+    <h3 class="card_title">${kittenName3}</h3>
+    <h4 class="card_race">${kittenRace3}</h4>
     <p class=" card_description">
-      Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella
-      mirada se ha convertido en una de sus señas de identidad. Sus ojos son
-      grandes y las orejas resultan largas y en punta.
+    ${kittenDesc3}
     </p>
+    </article>
   </li>`;
 
 // Nombramos las variables del botón "+" y la sección "formulario", con sus clases añadidas correspondientes

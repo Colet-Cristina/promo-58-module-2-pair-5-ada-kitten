@@ -8,6 +8,7 @@
 li {
   list-style: none;
 }
+
 .header {
   width: 100%;
   height: 50px;
@@ -22,6 +23,7 @@ li {
   background-color: white;
   padding: 30px;
 }
+
 .header .logo {
   display: flex;
   justify-content: flex-start;
@@ -73,6 +75,7 @@ li {
   color: white;
   font-size: 72px;
 }
+
 .about-us .subtitle {
   color: var(--color-green);
   font-size: 36px;
@@ -126,6 +129,7 @@ li {
     0 0.25rem 0.53125rem rgb(4 9 20 / 5%), 0 0.125rem 0.1875rem rgb(4 9 20 / 3%);
   text-align: center;
 }
+
 @media all and (min-width: 500px) {
   .card {
     width: 30vw;
@@ -146,6 +150,7 @@ li {
 .card_race {
   padding: 10px;
 }
+
 .card_description {
   padding: 10px;
 }
@@ -174,6 +179,7 @@ li {
   flex-direction: column;
   align-items: center;
 }
+
 .new-form .title {
   font-size: 18px;
   padding: 10px;
@@ -202,6 +208,7 @@ li {
   color: white;
 }
 
+/* la clase que oculta el boton +*/
 .collapsed {
   display: none;
 }
