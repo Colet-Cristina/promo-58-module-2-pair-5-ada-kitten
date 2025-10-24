@@ -61,9 +61,25 @@ const btnAdd = document.querySelector(".js-btn-add");
 const newForm = document.querySelector(".js-new-form");
 
 // Añadimos un evento al botón para hacer "click" y otro evento (toggle) que muestra y oculta el formulario al hacer ese "click"
-btnAdd.addEventListener("click", () => {
-  newForm.classList.toggle("collapsed");
-});
+function showNewCatForm() {
+  newForm.classList.remove("collapsed");
+};
+function hideNewCatForm() {
+  newForm.classList.add("collapsed");
+};
+// btnAdd.addEventListener("click", () => {
+//   newForm.classList.toggle("collapsed");
+// });
+
+linkNewFormElement.addEventListener("click", handleClickNewCatForm) 
+
+function handleClickNewCatForm(event) {
+if (newForm.classList.contains("collapsed")) {
+  showNewCatForm();
+} else {
+  hideNewCatForm();
+}
+};
 
 //Nombramos la variable del "botón cancelar" con su clase correspondiente
 const buttonCancel = document.querySelector(".button-cancel");
@@ -102,4 +118,5 @@ searchButton.addEventListener("click", (ev) => {
   // Los if se usan decirle a nuestra página web que si escribes en el input (descripción) un texto que está incluído en la descripción de algún artículo,
   //  mostramos dicho artículo más cualquier otro que contenga ese mismo texto.
 });
+
 
