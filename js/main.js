@@ -77,12 +77,6 @@ buttonCancel.addEventListener("click", () => {
 // Cuando la clase está oculta, el formulario aparece y cuando la clase aparece junto a las otras dos clases puestas en la sección "new form", el formulario se oculta.
 //En esa misma sección, se encuentra el botón "cancel". Cuando le demos click al botón, aparece la clase "collapsed" junto a new form, y el formulario se oculta.
 
-const kittenDesc1 =
-  "Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.";
-const kittenDesc2 =
-  "Produce fascinación y curiosidad. Exótico, raro, bello, extraño… hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.";
-const kittenDesc3 =
-  "Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad.Sus ojos son grandes y las orejas resultan largas y en punta.";
 
 const searchButton = document.querySelector(".js_button-search"); //Variable del botón del "buscar" en el apartado "filtrar/buscar"
 const input_search_desc = document.querySelector(".js_in_search_desc"); //Variable del input de la "descripción" del apartado "filtrar/buscar"
