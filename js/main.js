@@ -63,23 +63,23 @@ const newForm = document.querySelector(".js-new-form");
 // Añadimos un evento al botón para hacer "click" y otro evento (toggle) que muestra y oculta el formulario al hacer ese "click"
 function showNewCatForm() {
   newForm.classList.remove("collapsed");
-};
+}
 function hideNewCatForm() {
   newForm.classList.add("collapsed");
-};
+}
 // btnAdd.addEventListener("click", () => {
 //   newForm.classList.toggle("collapsed");
 // });
 
-linkNewFormElement.addEventListener("click", handleClickNewCatForm) 
+btnAdd.addEventListener("click", handleClickNewCatForm);
 
 function handleClickNewCatForm(event) {
-if (newForm.classList.contains("collapsed")) {
-  showNewCatForm();
-} else {
-  hideNewCatForm();
+  if (newForm.classList.contains("collapsed")) {
+    showNewCatForm();
+  } else {
+    hideNewCatForm();
+  }
 }
-};
 
 //Nombramos la variable del "botón cancelar" con su clase correspondiente
 const buttonCancel = document.querySelector(".button-cancel");
@@ -92,7 +92,6 @@ buttonCancel.addEventListener("click", () => {
 // El collapsed es una clase que aparece en CSS con un display None que oculta esa clase.
 // Cuando la clase está oculta, el formulario aparece y cuando la clase aparece junto a las otras dos clases puestas en la sección "new form", el formulario se oculta.
 //En esa misma sección, se encuentra el botón "cancel". Cuando le demos click al botón, aparece la clase "collapsed" junto a new form, y el formulario se oculta.
-
 
 const searchButton = document.querySelector(".js_button-search"); //Variable del botón del "buscar" en el apartado "filtrar/buscar"
 const input_search_desc = document.querySelector(".js_in_search_desc"); //Variable del input de la "descripción" del apartado "filtrar/buscar"
@@ -119,4 +118,14 @@ searchButton.addEventListener("click", (ev) => {
   //  mostramos dicho artículo más cualquier otro que contenga ese mismo texto.
 });
 
-
+function renderKitten(url, desc, name, race) {
+  return `
+<li class="card">
+   <article>
+    <img class="card_img" src="${url}" alt="maine-coon-cat"/>
+    <h3 class="card_title">${name}</h3>
+    <h4 class="card_race">${race}</h4>
+    <p class=" card_description">${desc}</p>
+    </article>
+  </li>`;
+}
