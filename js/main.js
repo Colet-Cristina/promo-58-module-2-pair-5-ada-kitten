@@ -75,7 +75,7 @@ function hideNewCatForm() {
   newForm.classList.add("collapsed");
 }
 
-//Creamos la función "handleClickNewCatForm", junto con el evento de evitar recargar la página. 
+//Creamos la función "handleClickNewCatForm", junto con el evento de evitar recargar la página.
 // Después se añade la información de que si el elemento "newForm" contiene la clase "collapsed", muestra el formulario de gato nuevo. Si no la tiene, no muestra el formulario.
 function handleClickNewCatForm(event) {
   event.preventDefault();
@@ -126,14 +126,29 @@ searchButton.addEventListener("click", (ev) => {
 });
 
 // Creamos una función, la cuál engloba TODO el contenido informativo de los gatos nuevos a rellenar.
-function renderKitten(url, desc, name, race) {
-  return `
+
+  function renderKitten(url, desc, name, race) {
+    const kittenHTML = `
 <li class="card">
    <article>
-    <img class="card_img" src="${url}" alt=""/>
-    <h3 class="card_title">${name}</h3>
-    <h4 class="card_race">${race}</h4>
-    <p class=" card_description">${desc}</p>
+    <img class="card_img" src="${inputUrl}" alt=""/>
+    <h3 class="card_title">${inputName}</h3>
+    <h4 class="card_race">${inputRace}</h4>
+    <p class=" card_description">${inputDesc}</p>
     </article>
   </li>`;
-}
+  }
+
+newForm.addEventListener("submit", handleClickNewCatForm);
+
+const submitAdd = newForm.querySelector(".js-submit-add");
+
+submitAdd.addEventListener("click", (ev) => {
+  ev.preventDefault();
+  const inputUrl = newForm.querySelector(".js-input-url").value;
+  const inputName = newForm.querySelector(".js-input-name").value;
+  const inputRace = newForm.querySelector(".js-input-race").value;
+  const inputDesc = newForm.querySelector(".js-input-desc").value;
+  const HTMLkitten = renderKitten(inputUrl, inputName, inputRace, inputDesc);
+ kittenlist.innerHTML += kittenHTML;
+});
