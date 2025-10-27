@@ -1,9 +1,10 @@
 "use strict";
 // Nombramos las variables de gatos y las asignamos a la clase de la etiqueta "list"
-const kittenlist = document.querySelector(".js-list");
 // const kittenOne = document.querySelector(".js-list");
 // const kittenTwo = document.querySelector(".js-list");
 // const kittenThree = document.querySelector(".js-list");
+const kittenlist = document.querySelector(".js-list");
+
 const kittenImage1 = "https://dev.adalab.es/gato-siames.webp";
 const kittenName1 = "Anastacio";
 const kittenDesc1 =
@@ -61,25 +62,31 @@ const btnAdd = document.querySelector(".js-btn-add");
 const newForm = document.querySelector(".js-new-form");
 
 // Añadimos un evento al botón para hacer "click" y otro evento (toggle) que muestra y oculta el formulario al hacer ese "click"
+
+// btnAdd.addEventListener("click", () => {
+//   newForm.classList.toggle("collapsed");
+// });
+
+//Cambiamos el evento click y el toggle de la clase "collapsed", por dos funciones. Una que quite la clase y otra que la añada.
 function showNewCatForm() {
   newForm.classList.remove("collapsed");
 }
 function hideNewCatForm() {
   newForm.classList.add("collapsed");
 }
-// btnAdd.addEventListener("click", () => {
-//   newForm.classList.toggle("collapsed");
-// });
 
-btnAdd.addEventListener("click", handleClickNewCatForm);
-
+//Creamos la función "handleClickNewCatForm", junto con el evento de evitar recargar la página. 
+// Después se añade la información de que si el elemento "newForm" contiene la clase "collapsed", muestra el formulario de gato nuevo. Si no la tiene, no muestra el formulario.
 function handleClickNewCatForm(event) {
+  event.preventDefault();
   if (newForm.classList.contains("collapsed")) {
     showNewCatForm();
   } else {
     hideNewCatForm();
   }
 }
+//Añadimos el evento click de nuevo, pero usando al información de la función que engloba el mostrar o no el formulario..
+btnAdd.addEventListener("click", handleClickNewCatForm);
 
 //Nombramos la variable del "botón cancelar" con su clase correspondiente
 const buttonCancel = document.querySelector(".button-cancel");
@@ -118,11 +125,12 @@ searchButton.addEventListener("click", (ev) => {
   //  mostramos dicho artículo más cualquier otro que contenga ese mismo texto.
 });
 
+// Creamos una función, la cuál engloba TODO el contenido informativo de los gatos nuevos a rellenar.
 function renderKitten(url, desc, name, race) {
   return `
 <li class="card">
    <article>
-    <img class="card_img" src="${url}" alt="maine-coon-cat"/>
+    <img class="card_img" src="${url}" alt=""/>
     <h3 class="card_title">${name}</h3>
     <h4 class="card_race">${race}</h4>
     <p class=" card_description">${desc}</p>
