@@ -1,9 +1,8 @@
 "use strict";
-// Nombramos las variables de gatos y las asignamos a la clase de la etiqueta "list"
-// const kittenOne = document.querySelector(".js-list");
-// const kittenTwo = document.querySelector(".js-list");
-// const kittenThree = document.querySelector(".js-list");
-const kittenlist = document.querySelector(".js-list");
+// Nombramos las variables de gatos
+//const kittenOne = document.querySelector(".js-list");
+//const kittenTwo = document.querySelector(".js-list");
+//const kittenThree = document.querySelector(".js-list");
 
 const kittenImage1 = "https://dev.adalab.es/gato-siames.webp";
 const kittenName1 = "Anastacio";
@@ -37,18 +36,18 @@ const kittenOneText = `<li class="card">
 
 const kittenTwoText = `<li class="card">
    <article>
-    <img class="card_img" src="${kittenImage2}" alt="sphynx-cat"/>
+    <img class="card_img" src="${kittenImage2}" alt="${kittenImage2}"/>
     <h3 class="card_title">${kittenName2}</h3>
     <h4 class="card_race">${kittenRace2}</h4>
     <p class=" card_description">
-       ${kittenDesc1}
+       ${kittenDesc2}
     </p>
     </article>
   </li>`;
 
 const kittenThreeText = `<li class="card">
    <article>
-    <img class="card_img" src="${kittenImage3}" alt="maine-coon-cat"/>
+    <img class="card_img" src="${kittenImage3}" alt="${kittenImage3}"/>
     <h3 class="card_title">${kittenName3}</h3>
     <h4 class="card_race">${kittenRace3}</h4>
     <p class=" card_description">
@@ -100,32 +99,62 @@ buttonCancel.addEventListener("click", () => {
 // Cuando la clase está oculta, el formulario aparece y cuando la clase aparece junto a las otras dos clases puestas en la sección "new form", el formulario se oculta.
 //En esa misma sección, se encuentra el botón "cancel". Cuando le demos click al botón, aparece la clase "collapsed" junto a new form, y el formulario se oculta.
 
-const searchButton = document.querySelector(".js_button-search"); //Variable del botón del "buscar" en el apartado "filtrar/buscar"
-const input_search_desc = document.querySelector(".js_in_search_desc"); //Variable del input de la "descripción" del apartado "filtrar/buscar"
+//------------------BUSCADOR CON FUNCIONES--------------------------------------------------------------
+const searchButton = document.querySelector(".js_button-search"); //Constante del botón "buscar" en el apartado "filtrar/buscar"
+const input_search_desc = document.querySelector(".js_in_search_desc"); //Constante del input de la "descripción" del apartado "filtrar/buscar"
+const kittenList = document.querySelector(".js-list"); // Nueva constante de la lista que engloba los gatitos existentes arriba
 
-searchButton.addEventListener("click", (ev) => {
-  ev.preventDefault(); // Evita que el formulario recargue la página
-  const descrSearchText = input_search_desc.value; // Creamos una variable nueva, con otro nombre diferente que contiene el valor (value) de la variable del input (search_desc) de la descripción
-  let breedText = ""; // Creamos una variable para almacenar el texto de la raza
-  kittenlist.innerHTML = ""; // Para que no se repita la búsqueda si los campos están en blanco
+const filterKitten = (event) => {
+  //Constante para declarar un filtro de búsqueda
+  event.preventDefault(); //Evita que recargue la página
+
+  const descrSearchText = input_search_desc.value; //Constante para declarar el valor que se escriba en el apartado descripción
+
+  kittenList.innerHTML = ""; //Para que no se repita la búsqueda si los campos están en blanco
+
+  if (descrSearchText === "") {
+    //Si le damos al botón "buscar" mientras los campos están vacíos, muestra este mensaje.
+    kittenList.innerHTML = `<li>Por favor, escribe una descripción para buscar 🐱</li>`;
+    return;
+  }
+  // Si rellenamos el campo "descripción" con un valor de esta, muestra el gatito.
   if (kittenDesc1.includes(descrSearchText)) {
-    // Con innerHTML, asignamos los tres artículos de los gatos a un solo elemento, que es la etiqueta <ul>
-    kittenlist.innerHTML += kittenOneText;
+    kittenList.innerHTML += kittenOneText;
+  } else if (kittenDesc2.includes(descrSearchText)) {
+    kittenList.innerHTML += kittenTwoText;
+  } else if (kittenDesc3.includes(descrSearchText)) {
+    kittenList.innerHTML += kittenThreeText;
+  } else {
+    //REVISIÓN
+    //Si buscamos en los campos un valor de la descripción que no existe, muestra este mensaje.
+    kittenList.innerHTML = `<li>No se encontraron gatitos con esa descripción 😿</li>`;
   }
+};
 
-  if (kittenDesc2.includes(descrSearchText)) {
-    kittenlist.innerHTML += kittenTwoText;
-  }
+searchButton.addEventListener("click", filterKitten); // Unimos el evento click con la función de filtrado.
+//
 
-  if (kittenDesc3.includes(descrSearchText)) {
-    kittenlist.innerHTML += kittenThreeText;
-  }
+// ------------------- BUSCADOR CON CONDICIONALES -----------------------------------------------------
+//let breedText = ""; // Creamos una variable para almacenar el texto de la raza
+//kittenlist.innerHTML = ""; // Para que no se repita la búsqueda si los campos están en blanco
+//if (kittenDesc1.includes(descrSearchText)) {
+// Con innerHTML, asignamos los tres artículos de los gatos a un solo elemento, que es la etiqueta <ul>
+//  kittenlist.innerHTML += kittenOneText;
+//}
 
-  // Los if se usan decirle a nuestra página web que si escribes en el input (descripción) un texto que está incluído en la descripción de algún artículo,
-  //  mostramos dicho artículo más cualquier otro que contenga ese mismo texto.
-});
+//if (kittenDesc2.includes(descrSearchText)) {
+//  kittenlist.innerHTML += kittenTwoText;
+//}
+
+//if (kittenDesc3.includes(descrSearchText)) {
+//kittenlist.innerHTML += kittenThreeText;
+//}
+
+// Los if se usan decirle a nuestra página web que si escribes en el input (descripción) un texto que está incluído en la descripción de algún artículo,
+//  mostramos dicho artículo más cualquier otro que contenga ese mismo texto.
 
 // Creamos una función, la cuál engloba TODO el contenido informativo de los gatos nuevos a rellenar.
+// -----------------------------------------------------------------------------------------------------
 
 function renderKitten(url, name, race, desc) {
   const kittenHTML = `
@@ -153,7 +182,6 @@ submitAdd.addEventListener("click", (ev) => {
   const inputDesc = newForm.querySelector(".js-input-desc").value;
   const kittenHTML = renderKitten(inputUrl, inputName, inputRace, inputDesc);
   //const HTMLkitten = renderKitten(inputUrl, inputName, inputRace, inputDesc);
-  kittenlist.innerHTML += kittenHTML;
+  kittenList.innerHTML += kittenHTML;
   //kittenlist.innerHTML += kittenHTML; no tenian la misma variable.
 });
-
