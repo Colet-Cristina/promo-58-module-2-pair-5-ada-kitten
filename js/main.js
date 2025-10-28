@@ -127,17 +127,19 @@ searchButton.addEventListener("click", (ev) => {
 
 // Creamos una función, la cuál engloba TODO el contenido informativo de los gatos nuevos a rellenar.
 
-  function renderKitten(url, desc, name, race) {
-    const kittenHTML = `
+function renderKitten(url, name, race, desc) {
+  const kittenHTML = `
 <li class="card">
    <article>
-    <img class="card_img" src="${inputUrl}" alt=""/>
-    <h3 class="card_title">${inputName}</h3>
-    <h4 class="card_race">${inputRace}</h4>
-    <p class=" card_description">${inputDesc}</p>
+    <img class="card_img" src="${url}" alt=""/> 
+    <h3 class="card_title">${name}</h3>
+    <h4 class="card_race">${race}</h4>
+    <p class=" card_description">${desc}</p>
     </article>
   </li>`;
-  }
+  return kittenHTML;
+}
+// Quito los input de template
 
 newForm.addEventListener("submit", handleClickNewCatForm);
 
@@ -149,6 +151,9 @@ submitAdd.addEventListener("click", (ev) => {
   const inputName = newForm.querySelector(".js-input-name").value;
   const inputRace = newForm.querySelector(".js-input-race").value;
   const inputDesc = newForm.querySelector(".js-input-desc").value;
-  const HTMLkitten = renderKitten(inputUrl, inputName, inputRace, inputDesc);
- kittenlist.innerHTML += kittenHTML;
+  const kittenHTML = renderKitten(inputUrl, inputName, inputRace, inputDesc);
+  //const HTMLkitten = renderKitten(inputUrl, inputName, inputRace, inputDesc);
+  kittenlist.innerHTML += kittenHTML;
+  //kittenlist.innerHTML += kittenHTML; no tenian la misma variable.
 });
+
