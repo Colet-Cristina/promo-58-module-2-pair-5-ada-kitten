@@ -185,3 +185,10 @@ submitAdd.addEventListener("click", (ev) => {
   kittenList.innerHTML += kittenHTML;
   //kittenlist.innerHTML += kittenHTML; no tenian la misma variable.
 });
+
+const kittenData_1 = {
+  image: 'https://dev.adalab.es/gato-siames.webp',
+  name: 'Anastacio',
+  desc: ' Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
+  race: 'Siamés',
+};
