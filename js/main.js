@@ -22,7 +22,7 @@ const kittenDesc3 =
   " Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.";
 const kittenRace3 = "Maine Coon";
 
-// Asignar a cada constante su contenido que estaba antes en HTML
+/*Asignar a cada constante su contenido que estaba antes en HTML
 const kittenOneText = `<li class="card">
    <article>
       <img class="card_img" src="${kittenImage1}" alt="gatito ${kittenName1}"/>
@@ -55,7 +55,7 @@ const kittenThreeText = `<li class="card">
     </p>
     </article>
   </li>`;
-
+*/
 // Nombramos las variables del botón "+" y la sección "formulario", con sus clases añadidas correspondientes
 const btnAdd = document.querySelector(".js-btn-add");
 const newForm = document.querySelector(".js-new-form");
@@ -156,18 +156,19 @@ searchButton.addEventListener("click", filterKitten); // Unimos el evento click 
 // Creamos una función, la cuál engloba TODO el contenido informativo de los gatos nuevos a rellenar.
 // -----------------------------------------------------------------------------------------------------
 
-function renderKitten(url, name, race, desc) {
-  const kittenHTML = `
-<li class="card">
-   <article>
-    <img class="card_img" src="${url}" alt=""/> 
-    <h3 class="card_title">${name}</h3>
-    <h4 class="card_race">${race}</h4>
-    <p class=" card_description">${desc}</p>
-    </article>
-  </li>`;
-  return kittenHTML;
-}
+//function renderKitten(url, name, race, desc) { 
+// const kittenHTML =`
+//<li class="card">
+//<article>
+//<img class="card_img" src="${url}" alt=""/> 
+// <h3 class="card_title">${name}</h3>
+//<h4 class="card_race">${race}</h4>
+//<p class=" card_description">${desc}</p>
+//</article>
+//</li>`;
+//return kittenHTML;
+//}
+
 // Quito los input de template
 
 newForm.addEventListener("submit", handleClickNewCatForm);
@@ -186,9 +187,63 @@ submitAdd.addEventListener("click", (ev) => {
   //kittenlist.innerHTML += kittenHTML; no tenian la misma variable.
 });
 
+function renderKitten(kittenData) {
+  const kittenHTML = `
+<li class="card">
+   <article>
+    <img class="card_img" src="${kittenData.image}" alt="gatito ${kittenData.name}"/> 
+    <h3 class="card_title">${kittenData.name}</h3>
+    <h4 class="card_race">${kittenData.race}</h4>
+    <p class=" card_description">${kittenData.desc}</p>
+    </article>
+  </li>`;
+  return kittenHTML;
+}
+
 const kittenData_1 = {
   image: 'https://dev.adalab.es/gato-siames.webp',
   name: 'Anastacio',
   desc: ' Porte elegante, su patrón de color tan característico y sus ojos de un azul intenso, pero su historia se remonta a Asía al menos hace 500 años, donde tuvo su origen muy posiblemente.',
   race: 'Siamés',
 };
+const kittenData_2 = {
+  image: "https://dev.adalab.es/sphynx-gato.webp",
+  name: "Fiona",
+  desc: "Produce fascinación y curiosidad.Exótico, raro, bello, extraño hasta con pinta de alienígena han llegado a definir a esta raza gatuna que se caracteriza por la «ausencia» de pelo.",
+  race: "Sphynx",
+};
+
+const kittenData_3 = {
+  image: "https://dev.adalab.es/maine-coon-cat.webp",
+  name: "Cielo",
+  desc: " Tienen la cabeza cuadrada y los ojos simétricos, por lo que su bella mirada se ha convertido en una de sus señas de identidad. Sus ojos son grandes y las orejas resultan largas y en punta.",
+  race: "Maine Coon",
+};
+
+function filterKitten(descrSearchText) {
+  list.innerHTML = "";
+  if (kittenData_1.desc.includes(descrSearchText) ||
+    kittenData_1.name.includes(descrSearchText) ||
+    kittenData_1.race.includes(descrSearchText)
+  ) {
+    kittenList.innerHTML += renderKitten(kittenData_1)
+  }
+  if (kittenData_2.desc.includes(descrSearchText) ||
+    kittenData_2.name.includes(descrSearchText) ||
+    kittenData_2.race.includes(descrSearchText)
+  ) {
+    kittenList.innerHTML += renderKitten(kittenData_2)
+  }
+  if (kittenData_3.desc.includes(descrSearchText) ||
+    kittenData_3.name.includes(descrSearchText) ||
+    kittenData_3.race.includes(descrSearchText)
+  ) {
+    kittenList.innerHTML += renderKitten(kittenData_3)
+  }
+};
+
+searchButton.addEventListener("click", (event) => {
+  event.preventDefault();
+  const text = inputSearch.value;
+  filterKitten(text);
+});
